@@ -10,7 +10,8 @@ namespace HealthSystem_3._0
     {
 
         // Variables
-        public string name;
+        public string name; // Characters name
+        public ConsoleColor hudColor; // Color HUD prints in
 
         public int health;
         public int shield;
@@ -103,7 +104,7 @@ namespace HealthSystem_3._0
 
         public void ShowHUD()
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = hudColor;
 
             Console.WriteLine();
             Console.WriteLine("|" + name);

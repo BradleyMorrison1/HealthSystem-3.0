@@ -16,6 +16,7 @@ namespace HealthSystem_3._0
             maxShield = 100;
             lives = 3;
             alive = true;
+            hudColor = ConsoleColor.Cyan;
 
             health = maxHealth;
             shield = maxShield;
