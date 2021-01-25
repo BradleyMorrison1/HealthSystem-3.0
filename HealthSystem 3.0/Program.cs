@@ -14,19 +14,48 @@ namespace HealthSystem_3._0
     {
         static void Main(string[] args)
         {
+            // Game Variables
+            string enterDebug;
+            string restart;
+            int userInput; // Used to enter custom values for damage and healing
+
             Player player = new Player();
 
-            player.ShowHUD();
+            Enemy enemy = new Enemy();
 
-            player.TakeDamage(166);
+            Console.WriteLine("Would you like to enter Debug mode?\n(Y)es or (N)o");
+            enterDebug = Console.ReadLine();
+            if (enterDebug == "y" || enterDebug == "Y")
+            {
+                do
+                {
+                    player.ShowHUD();
 
-            player.ShowHUD();
+                    Console.WriteLine("How much Damage would you like to take?");
+                    userInput = Convert.ToInt32(Console.ReadLine());
+                    player.TakeDamage(userInput);
 
-            player.Heal(266);
+                    player.ShowHUD();
 
-            player.ShowHUD();
+                    Console.WriteLine("How much would you like to Heal?");
+                    userInput = Convert.ToInt32(Console.ReadLine());
+                    player.Heal(userInput);
 
-            Console.ReadKey(true);
+                    player.ShowHUD();
+
+                    Console.WriteLine("How much would you like to Regenerate Shield?");
+                    userInput = Convert.ToInt32(Console.ReadLine());
+                    player.RegenerateShield(userInput);
+
+                    player.ShowHUD();
+
+                    Console.WriteLine("Would you like to restart?\n(Y)es or (N)o");
+                    restart = Console.ReadLine();
+                }
+                while (restart == "y" || restart == "Y");
+            }
+
+
         }
     }
 }
