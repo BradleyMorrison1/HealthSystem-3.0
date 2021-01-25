@@ -8,17 +8,17 @@ namespace HealthSystem_3._0
 {
     class Enemy : GameCharacter
     {
-        public Enemy()
+        public Enemy(string Name)
         {
-            name = "Bowser";
-
-            health = maxHealth;
-            shield = maxShield;
+            name = Name;
 
             maxHealth = 100;
             maxShield = 100;
             lives = 3;
-        }
+            alive = true;
 
+            health = maxHealth;
+            shield = maxShield;
+        }
     }
 }

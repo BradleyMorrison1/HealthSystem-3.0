@@ -17,6 +17,7 @@ namespace HealthSystem_3._0
         public int maxHealth;
         public int maxShield;
         public int lives;
+        public bool alive;
 
 
         // Methods
@@ -55,7 +56,8 @@ namespace HealthSystem_3._0
             if (lives <= 0)
             {
                 lives = 0;
-                Console.WriteLine("YOU HAVE DIED");
+                alive = false;
+                Console.WriteLine(name + " HAS DIED");
             }
         }
 
@@ -127,13 +129,13 @@ namespace HealthSystem_3._0
                     Console.WriteLine("\nERROR Shield Regeneration Points Exceed 100\nResetting to 100");
                     break;
                 case "healNegative":
-                    Console.WriteLine("\nERROR Healing Value Negative\nResetting to 0");
+                    Console.WriteLine("\nERROR Healing Value Negative, Healing Value must be Positive\nResetting to 0");
                     break;
                 case "shieldHealNegative":
-                    Console.WriteLine("\nERROR Healing Value Negative\nResetting to 0");
+                    Console.WriteLine("\nERROR Shield Regeneration Value Negative, Shield Regeneration Value must be Positive\nResetting to 0");
                     break;
                 case "damageNegative":
-                    Console.WriteLine("\nERROR Healing Value Negative\nResetting to 0");
+                    Console.WriteLine("\nERROR Damage Value Negative, Damage Value must be Positive \nResetting to 0");
                     break;
             }
 

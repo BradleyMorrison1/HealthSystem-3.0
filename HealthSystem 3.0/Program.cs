@@ -15,17 +15,64 @@ namespace HealthSystem_3._0
         static void Main(string[] args)
         {
             // Game Variables
-            string enterDebug;
+            const string yesOrNo = "\n(Y)es or (N)o"; // To save writing it out every time
+            string enterCombat;
+            string enterMode;
             string restart;
+
             int userInput; // Used to enter custom values for damage and healing
 
-            Player player = new Player();
+            Random random = new Random();
 
-            Enemy enemy = new Enemy();
+            Player player = new Player("Hero");
 
-            Console.WriteLine("Would you like to enter Debug mode?\n(Y)es or (N)o");
-            enterDebug = Console.ReadLine();
-            if (enterDebug == "y" || enterDebug == "Y")
+            Enemy enemy = new Enemy("Big Bad Enemy");
+
+            Console.WriteLine("Would you like to enter Game mode?" + yesOrNo);
+            enterMode = Console.ReadLine();
+            if (enterMode == "y" || enterMode == "Y")
+            {
+                do
+                {
+
+                    player.ShowHUD();
+
+                    Console.WriteLine(player.name + " Has Encountered, " + enemy.name);
+
+                    Console.WriteLine("Does " + player.name + " want to enter Combat?" + yesOrNo);
+                    enterCombat = Console.ReadLine();
+                    if(enterCombat == "y" || enterCombat == "Y")
+                    {
+                        do
+                        {
+                            int playerDamage = random.Next(15, 100); // Damage player does to enemy range 15 - 100
+                            int enemyDamage = random.Next(15, 100); // Damage enemy does to player range 15 - 100
+
+                            enemy.TakeDamage(playerDamage);
+                            enemy.ShowHUD();
+
+                            Console.WriteLine(enemy.name + " will now attack" + player.name);
+
+                            player.TakeDamage(enemyDamage);
+                            player.ShowHUD();
+
+
+                        }
+                        while (!player.alive || !enemy.alive);
+                    }
+
+
+
+
+                    Console.WriteLine("Would you like to restart?" + yesOrNo);
+                    restart = Console.ReadLine();
+                }
+                while (restart == "y" || restart == "Y");
+            }
+
+            Console.WriteLine("Would you like to enter Custom Value Debug mode?" + yesOrNo);
+            enterMode = Console.ReadLine();
+            if (enterMode == "y" || enterMode == "Y")
             {
                 do
                 {
@@ -49,13 +96,11 @@ namespace HealthSystem_3._0
 
                     player.ShowHUD();
 
-                    Console.WriteLine("Would you like to restart?\n(Y)es or (N)o");
+                    Console.WriteLine("Would you like to restart?" + yesOrNo);
                     restart = Console.ReadLine();
                 }
                 while (restart == "y" || restart == "Y");
             }
-
-
         }
     }
 }

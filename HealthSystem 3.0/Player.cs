@@ -8,13 +8,14 @@ namespace HealthSystem_3._0
 {
     class Player : GameCharacter
     {
-        public Player()
+        public Player(string Name)
         {
-            name = "Hero";
+            name = Name;
 
             maxHealth = 100;
             maxShield = 100;
             lives = 3;
+            alive = true;
 
             health = maxHealth;
             shield = maxShield;
