@@ -30,7 +30,11 @@ namespace HealthSystem_3._0
                 ErrorMessage("damageNegative");
             }
 
-            Console.WriteLine("\n" + name + " has taken " + damage + " points of Damage!");
+            Console.Write("\n\n" + name + " has taken ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(damage);
+            Console.ResetColor();
+            Console.Write(" points of Damage!");
 
             int healthDamage = damage - shield;
 
@@ -50,15 +54,17 @@ namespace HealthSystem_3._0
             {
                 Console.WriteLine("\n" + name + " has lost a life");
                 lives--;
-                health = 100;
-                shield = 100;
+                health = maxHealth;
+                shield = maxShield;
             }
 
             if (lives <= 0)
             {
                 lives = 0;
                 alive = false;
-                Console.WriteLine(name + " HAS DIED");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n" + name + " HAS DIED\n");
+                Console.ResetColor();
             }
         }
 
@@ -76,10 +82,14 @@ namespace HealthSystem_3._0
                 ErrorMessage("healNegative");
             }
 
-            Console.WriteLine("\n" + name + " has healed " + healingPoints + " points to Health");
+            Console.Write("\n\n" + name + " has healed ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(healingPoints);
+            Console.ResetColor();
+            Console.Write(" points to Health");
 
-            if (health < 100) health += healingPoints;
-            if (health > 100) health = 100;
+            if (health < maxHealth) health += healingPoints;
+            if (health > maxHealth) health = maxHealth;
         }
 
         public void RegenerateShield(int regenPoints)
@@ -96,10 +106,14 @@ namespace HealthSystem_3._0
                 ErrorMessage("shieldHealNegative");
             }
 
-            Console.WriteLine("\n" + name + " has regenerated " + regenPoints + " points to their Shield");
+            Console.Write("\n\n" + name + " has regenerated ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(regenPoints);
+            Console.ResetColor();
+            Console.Write(" points to their Shield");
 
-            if (shield < 100) shield += regenPoints;
-            if (shield > 100) shield = 100;
+            if (shield < maxShield) shield += regenPoints;
+            if (shield > maxShield) shield = maxShield;
         }
 
         public void ShowHUD()
